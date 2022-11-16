@@ -1,1 +1,1 @@
-# poc-github-appcenter
+# POC GitHub & App Center
