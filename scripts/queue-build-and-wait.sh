@@ -2,11 +2,11 @@
 
 set -e
 
-local app, branch, token, buildId
-    
 app=$1
 branch=$2
 token=$3
+
+echo "Queueing build for '$app' on branch $branch..."
 
 buildId = $(appcenter build queue --app $app --branch $branch --token $token --output json | jq -r '.buildId')
 
@@ -21,3 +21,5 @@ while true; do
     fi
     sleep 30
 done
+
+echo "Build finished"
