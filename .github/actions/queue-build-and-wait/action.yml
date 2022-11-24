@@ -11,6 +11,9 @@ inputs:
   branch:
     description: 'Branch name'
     required: true
+  output:
+    description: 'Location for the build output'
+    required: true
   token:
     description: 'App Center token - you can get one from appcenter.ms/settings'
     required: true   
@@ -27,4 +30,5 @@ runs:
     - ${{ inputs.owner }}
     - ${{ inputs.app }}
     - ${{ inputs.branch }}
+    - ${{ inputs.output }}
     - ${{ inputs.token }}

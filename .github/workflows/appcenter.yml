@@ -22,8 +22,13 @@ jobs:
           owner: ${{ secrets.APP_CENTER_ORG }}
           app: ${{ secrets.APP_CENTER_APP }}
           branch: new-branch
-          token: ${{ secrets.APP_CENTER_TOKEN }}   
-      
+          output: build
+          token: ${{ secrets.APP_CENTER_TOKEN }}
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-app-apk
+          path: build
   # test:
   #   runs-on: ubuntu-latest
   #   needs: [build]

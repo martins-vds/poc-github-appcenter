@@ -4,7 +4,8 @@ set -e
 
 app="$1/$2"
 branch=$3
-token=$4
+output=$4
+token=$5
 
 echo "Queueing build for '$app' on branch $branch..."
 
@@ -26,6 +27,8 @@ while true; do
     fi
     sleep 10
 done
+
+appcenter build download -i $buildId -a $app --token $token -t build -d $output
 
 echo "Build finished"
 echo "buildId=$buildId" >> $GITHUB_OUTPUT
