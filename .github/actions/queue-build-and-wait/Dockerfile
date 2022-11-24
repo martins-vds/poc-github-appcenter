@@ -5,6 +5,7 @@ COPY entrypoint.sh /entrypoint.sh
 
 RUN npm install -g appcenter-cli \
     && apk update \
+    && apk add curl \
     && apk add jq \
     && apk add git 
 

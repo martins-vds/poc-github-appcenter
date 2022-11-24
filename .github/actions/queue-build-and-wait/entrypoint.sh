@@ -14,7 +14,7 @@ echo "Build with id '$buildId' queued, waiting for build to finish..."
 
 # Wait for build to finish
 while true; do
-    buildStatus=$(curl -X 'GET' -H 'accept: application/json' -H "X-API-Token: $token" "https://api.appcenter.ms/v0.1/apps/$app/branches/$branch/builds" | jq ". [] | select(.id==$buildId)" | jq -r '.result')
+    buildStatus=$(curl -s -X 'GET' -H 'accept: application/json' -H "X-API-Token: $token" "https://api.appcenter.ms/v0.1/apps/$app/branches/$branch/builds" | jq ". [] | select(.id==$buildId)" | jq -r '.result')
     if [ "$buildStatus" == "succeeded" ]; then
         break
     elif [ "$buildStatus" == "failed" ]; then
