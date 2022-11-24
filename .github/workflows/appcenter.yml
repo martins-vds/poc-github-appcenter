@@ -17,9 +17,7 @@ jobs:
       - run: |
           echo 'Creating branch config...'
 
-      - run: |
-          npm config set prefix /usr/local
-          npm install -g appcenter
+      - run: |          
           chmod +x ./scripts/queue-build-and-wait.sh
           ./scripts/queue-build-and-wait.sh ${{ secrets.APP_CENTER_ORG }}/${{ secrets.APP_CENTER_APP }} new-branch ${{ secrets.APP_CENTER_TOKEN }}
   # test:
