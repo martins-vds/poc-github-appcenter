@@ -17,7 +17,8 @@ jobs:
       - run: |
           echo 'Creating branch config...'
 
-      - run: |          
+      - name: Queue Build and Wait
+        run: |          
           chmod +x ./scripts/queue-build-and-wait.sh
           ./scripts/queue-build-and-wait.sh ${{ secrets.APP_CENTER_ORG }}/${{ secrets.APP_CENTER_APP }} new-branch ${{ secrets.APP_CENTER_TOKEN }}
   # test:
