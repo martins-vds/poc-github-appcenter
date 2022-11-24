@@ -1,0 +1,30 @@
+name: 'App Center Build and Wait'
+description: 'GitHub Action that queues builds in Visual Studio App Center'
+author: 'Vinny Martins <@martins-vds>'
+inputs:
+  owner:
+    description: 'Username or organization name'
+    required: true
+  app:
+    description: 'App name'
+    required: true 
+  branch:
+    description: 'Branch name'
+    required: true
+  token:
+    description: 'App Center token - you can get one from appcenter.ms/settings'
+    required: true   
+outputs:
+  buildId:
+    description: 'Id of the build queued'
+branding:
+  color: 'red' 
+  icon: 'share'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.owner }}
+    - ${{ inputs.app }}
+    - ${{ inputs.branch }}
+    - ${{ inputs.token }}

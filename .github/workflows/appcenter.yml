@@ -6,21 +6,24 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      buildId: ${{ steps.queue-build-and-wait.outputs.buildId }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3.1.0
-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
           
       - run: |
           echo 'Creating branch config...'
 
       - name: Queue Build and Wait
-        run: |          
-          chmod +x ./scripts/queue-build-and-wait.sh
-          ./scripts/queue-build-and-wait.sh ${{ secrets.APP_CENTER_ORG }}/${{ secrets.APP_CENTER_APP }} new-branch ${{ secrets.APP_CENTER_TOKEN }}
+        id: queue-build-and-wait
+        uses: ./github/actions/queue-build-and-wait
+        with:
+          org: ${{ secrets.APP_CENTER_ORG }}
+          app: ${{ secrets.APP_CENTER_APP }}
+          branch: new-branch
+          token: ${{ secrets.APP_CENTER_TOKEN }}   
+      
   # test:
   #   runs-on: ubuntu-latest
   #   needs: [build]

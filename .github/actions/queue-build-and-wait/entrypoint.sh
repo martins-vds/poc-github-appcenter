@@ -2,9 +2,9 @@
 
 set -e
 
-app=$1
-branch=$2
-token=$3
+app="$1/$2"
+branch=$3
+token=$4
 
 npm install -g appcenter
 
@@ -24,3 +24,4 @@ while true; do
 done
 
 echo "Build finished"
+echo "buildId=$buildId" >> $GITHUB_OUTPUT
