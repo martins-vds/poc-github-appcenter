@@ -10,7 +10,7 @@ npm install appcenter
 
 echo "Queueing build for '$app' on branch $branch..."
 
-buildId = $(npx appcenter build queue --app $app --branch $branch --token $token --output json | jq -r '.buildId')
+buildId=$(npx appcenter build queue --app $app --branch $branch --token $token --output json | jq -r '.buildId')
 
 echo "Build queued, waiting for build to finish..."
 
