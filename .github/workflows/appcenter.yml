@@ -13,15 +13,12 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'npm'
           
-      - run: |
-          npm install -g appcenter
-
       - run: |
           echo 'Creating branch config...'
 
       - run: |
+          npm install -g appcenter
           chmod +x ./scripts/queue-build-and-wait.sh
           ./scripts/queue-build-and-wait.sh ${{ secrets.APP_CENTER_ORG }}/${{ secrets.APP_CENTER_APP }} new-branch ${{ secrets.APP_CENTER_TOKEN }}
   # test:
