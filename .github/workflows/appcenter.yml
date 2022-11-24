@@ -17,7 +17,7 @@ jobs:
 
       - name: Queue Build and Wait
         id: queue-build-and-wait
-        uses: ./github/actions/queue-build-and-wait
+        uses: ./github/actions/queue-build-and-wait/
         with:
           org: ${{ secrets.APP_CENTER_ORG }}
           app: ${{ secrets.APP_CENTER_APP }}
