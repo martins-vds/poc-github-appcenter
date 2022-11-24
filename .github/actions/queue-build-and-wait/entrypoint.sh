@@ -28,7 +28,8 @@ while true; do
     sleep 10
 done
 
+echo "Build succeeded, downloading artifacts..."
 appcenter build download -i $buildId -a $app --token $token -t build -d $output
 
-echo "Build finished"
+echo "Done."
 echo "buildId=$buildId" >> $GITHUB_OUTPUT
