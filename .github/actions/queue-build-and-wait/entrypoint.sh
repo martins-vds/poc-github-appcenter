@@ -6,8 +6,6 @@ app="$1/$2"
 branch=$3
 token=$4
 
-npm install -g appcenter
-
 echo "Queueing build for '$app' on branch $branch..."
 
 buildId=$(appcenter build queue --app $app --branch $branch --token $token --output json | jq -r '.buildId')

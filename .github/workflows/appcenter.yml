@@ -19,7 +19,7 @@ jobs:
         id: queue-build-and-wait
         uses: ./.github/actions/queue-build-and-wait/
         with:
-          org: ${{ secrets.APP_CENTER_ORG }}
+          owner: ${{ secrets.APP_CENTER_ORG }}
           app: ${{ secrets.APP_CENTER_APP }}
           branch: new-branch
           token: ${{ secrets.APP_CENTER_TOKEN }}   
