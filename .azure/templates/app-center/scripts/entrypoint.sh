@@ -35,7 +35,7 @@ done
 echo "Build succeeded, downloading artifacts..."
 
 if [ "$apk" != *.apk ]; then
-    $apk = "$apk_$branch_$buildId.apk"
+    apk = "$apk_$branch_$buildId.apk"
 fi
 
 appcenter build download -i $buildId -a $app --token $token -t build -f $apk -d $output
