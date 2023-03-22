@@ -2,7 +2,9 @@
 
 set -e
 
-app="$1/$2"
+org=$1
+appName=$2
+app="$org/$appName"
 branch=$3
 output=$4
 token=$5
@@ -29,7 +31,8 @@ while true; do
 done
 
 echo "Build succeeded, downloading artifacts..."
-appcenter build download -i $buildId -a $app --token $token -t build -d $output
+apk_file="$appName_$branch_$buildId.apk"
+appcenter build download -i $buildId -a $app --token $token -t build -f $apk_file -d $output
 
 echo "##vso[task.setvariable variable=buildId;isoutput=true]$buildId"
 echo "Done."
