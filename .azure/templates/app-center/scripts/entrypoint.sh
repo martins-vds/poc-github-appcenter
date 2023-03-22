@@ -4,10 +4,12 @@ set -e
 
 org=$1
 appName=$2
-app="$org/$appName"
 branch=$3
-output=$4
-token=$5
+apk=$4
+output=$5
+token=$6
+
+app="$org/$appName"
 
 echo "Queueing build for '$app' on branch $branch..."
 
@@ -31,8 +33,13 @@ while true; do
 done
 
 echo "Build succeeded, downloading artifacts..."
-apk_file="$appName_$branch_$buildId.apk"
-appcenter build download -i $buildId -a $app --token $token -t build -f $apk_file -d $output
+
+if [ "$apk" != *.apk ]; then
+    $apk = "$apk_$branch_$buildId.apk"
+fi
+
+appcenter build download -i $buildId -a $app --token $token -t build -f $apk -d $output
 
 echo "##vso[task.setvariable variable=buildId;isoutput=true]$buildId"
+echo "##vso[task.setvariable variable=apk;isoutput=true]$apk"
 echo "Done."
