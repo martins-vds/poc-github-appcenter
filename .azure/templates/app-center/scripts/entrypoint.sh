@@ -40,6 +40,5 @@ fi
 
 appcenter build download -i $buildId -a $app --token $token -t build -f $apk -d $output
 
-echo "##vso[task.setvariable variable=buildId;isoutput=true]$buildId"
 echo "##vso[task.setvariable variable=apk;isoutput=true]$apk"
 echo "Done."
